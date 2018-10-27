@@ -8,9 +8,6 @@ class Account {
 	}
 
 	int deposit(int amount) {
-		if (balanceAmount > 0) {
-			return balanceAmount;
-		}
-		return amount;
+		return balanceAmount + amount;
 	}
 }
