@@ -7,10 +7,14 @@ class Amount {
 	private final BigDecimal value;
 
 	private Amount(BigDecimal balanceAmount) {
-		if (balanceAmount.compareTo(BigDecimal.ZERO) < 0) {
+		if (isNegative(balanceAmount)) {
 			throw new IllegalArgumentException("Amount must not be negative");
 		}
 		value = balanceAmount;
+	}
+
+	private boolean isNegative(BigDecimal balanceAmount) {
+		return balanceAmount.compareTo(BigDecimal.ZERO) < 0;
 	}
 
 	static Amount of(double amount) {
