@@ -4,18 +4,18 @@ import java.util.Collections;
 import java.util.List;
 
 class Account {
-	private int balanceAmount;
+	private Amount balanceAmount;
 
-	public Account(int balanceAmount) {
-		this.balanceAmount = balanceAmount;
+	public Account(Amount amount) {
+		this.balanceAmount = amount;
 	}
 
 	int deposit(int amount) {
-		return balanceAmount + amount;
+		return balanceAmount.add(amount);
 	}
 
 	int withdraw(int amount) {
-		return balanceAmount - amount;
+		return balanceAmount.subtract(amount);
 	}
 
 	List<Operation> getOperationsHistory() {
