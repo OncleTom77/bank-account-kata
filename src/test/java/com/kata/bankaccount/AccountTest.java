@@ -37,6 +37,15 @@ public class AccountTest {
 	}
 
 	@Test
+	public void should_update_account_balance_when_withdraw_positive_amount_2() {
+		Account account = Account.of(3);
+
+		account.withdraw(2);
+
+		assertThat(account).isEqualTo(Account.of(1));
+	}
+
+	@Test
 	public void should_see_empty_operations_history() {
 		Account account = Account.of(0);
 
