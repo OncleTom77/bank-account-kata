@@ -1,5 +1,5 @@
 package com.kata.bankaccount;
 
 public enum OperationType {
-	DEPOSIT
+	WITHDRAWAL, DEPOSIT
 }

@@ -1,11 +1,8 @@
 package com.kata.bankaccount;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
-
-import static java.util.Arrays.asList;
 
 class Account {
 	private Amount balanceAmount;
@@ -27,7 +24,7 @@ class Account {
 	}
 
 	Amount withdraw(int amount) {
-		operations.add(new Operation());
+		operations.add(Operation.withdrawal());
 		balanceAmount = balanceAmount.subtract(amount);
 		return balanceAmount;
 	}
