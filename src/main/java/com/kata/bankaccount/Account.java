@@ -5,16 +5,18 @@ import java.util.List;
 import java.util.Objects;
 
 class Account {
+	private final DateProvider dateProvider;
 	private Amount balanceAmount;
 	private List<Operation> operations;
 
-	private Account(Amount amount) {
+	public Account(DateProvider dateProvider, Amount amount) {
+		this.dateProvider = dateProvider;
 		this.balanceAmount = amount;
 		operations = new ArrayList<>();
 	}
 
-	static Account of(int amount) {
-		return new Account(Amount.of(amount));
+	static Account of(DateProvider dateProvider, int amount) {
+		return new Account(dateProvider, Amount.of(amount));
 	}
 
 	Amount deposit(Amount amount) {
