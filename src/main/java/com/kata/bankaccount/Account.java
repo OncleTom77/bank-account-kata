@@ -24,7 +24,7 @@ class Account {
 	}
 
 	Amount withdraw(int amount) {
-		operations.add(Operation.withdrawal(1));
+		operations.add(Operation.withdrawal(amount));
 		balanceAmount = balanceAmount.subtract(amount);
 		return balanceAmount;
 	}
