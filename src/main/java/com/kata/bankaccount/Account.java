@@ -23,7 +23,7 @@ class Account {
 
 	Amount deposit(Amount amount) {
 		balanceAmount = balanceAmount.add(amount);
-		operations.add(Operation.deposit(amount, balanceAmount, LocalDateTime.of(2018, Month.OCTOBER, 27, 17, 0)));
+		operations.add(Operation.deposit(amount, balanceAmount, dateProvider.now()));
 		return balanceAmount;
 	}
 

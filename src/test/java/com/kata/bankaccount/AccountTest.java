@@ -3,7 +3,6 @@ package com.kata.bankaccount;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -87,18 +86,18 @@ public class AccountTest {
 		assertThat(operations.get(0)).isEqualTo(Operation.deposit(depositAmount, balanceAmount, OPERATION_DATE));
 	}
 
-	@Ignore
 	@Test
-	public void should_see_1_deposit_operation_with_amount_and_balance_in_history_when_1_deposit_operation_is_done_2() {
-		Account account = Account.of(dateProviderTest, 1);
+	public void should_see_1_deposit_operation_with_amount_and_balance_and_date_in_history_when_1_deposit_operation_is_done_2() {
+		LocalDateTime operationDate = OPERATION_DATE.plusDays(1);
+		Account account = Account.of(new DateProviderTest(operationDate), 0);
 		Amount depositAmount = Amount.of(1);
 		account.deposit(depositAmount);
 
 		List<Operation> operations = account.getOperationsHistory();
 
-		Amount balanceAmount = Amount.of(2);
+		Amount balanceAmount = Amount.of(1);
 		assertThat(operations).hasSize(1);
-		assertThat(operations.get(0)).isEqualTo(Operation.deposit(depositAmount, balanceAmount, OPERATION_DATE));
+		assertThat(operations.get(0)).isEqualTo(Operation.deposit(depositAmount, balanceAmount, operationDate));
 	}
 
 	@Test
