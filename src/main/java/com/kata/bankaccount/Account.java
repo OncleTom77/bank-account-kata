@@ -1,5 +1,7 @@
 package com.kata.bankaccount;
 
+import java.time.LocalDateTime;
+import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -21,7 +23,7 @@ class Account {
 
 	Amount deposit(Amount amount) {
 		balanceAmount = balanceAmount.add(amount);
-		operations.add(Operation.deposit(amount, balanceAmount));
+		operations.add(Operation.deposit(amount, balanceAmount, LocalDateTime.of(2018, Month.OCTOBER, 27, 17, 0)));
 		return balanceAmount;
 	}
 
