@@ -7,22 +7,13 @@ class Operation {
 	private final OperationType type;
 	private final int amount;
 
-	private Operation(OperationType type) {
-		this.type = type;
-		amount = 0;
-	}
-
 	private Operation(OperationType withdrawal, int amount) {
 		type = withdrawal;
 		this.amount = amount;
 	}
 
-	static Operation deposit() {
-		return new Operation(OperationType.DEPOSIT);
-	}
-
 	static Operation withdrawal() {
-		return new Operation(OperationType.WITHDRAWAL);
+		return new Operation(OperationType.WITHDRAWAL, 0);
 	}
 
 	static Operation deposit(int amount) {
