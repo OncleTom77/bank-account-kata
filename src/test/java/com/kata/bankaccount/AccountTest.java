@@ -1,40 +1,27 @@
 package com.kata.bankaccount;
 
+import junitparams.JUnitParamsRunner;
+import junitparams.Parameters;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@RunWith(JUnitParamsRunner.class)
 public class AccountTest {
 
+	@Parameters({"0", "1", "2", "3", "7", "10"})
 	@Test
-	public void should_add_0_amount_to_balance() {
+	public void should_get_deposit_amount_when_balance_amount_is_0(int depositAmount) {
 		Account account = new Account(0);
 
-		int balance = account.deposit(0);
+		int balance = account.deposit(depositAmount);
 
-		assertThat(balance).isEqualTo(0);
+		assertThat(balance).isEqualTo(depositAmount);
 	}
 
 	@Test
-	public void should_add_1_amount_to_balance() {
-		Account account = new Account(0);
-
-		int balance = account.deposit(1);
-
-		assertThat(balance).isEqualTo(1);
-	}
-
-	@Test
-	public void should_add_2_amount_to_balance() {
-		Account account = new Account(0);
-
-		int balance = account.deposit(2);
-
-		assertThat(balance).isEqualTo(2);
-	}
-
-	@Test
-	public void should_get_balance_when_deposit_0_amount() {
+	public void should_get_balance_amount_when_deposit_amount_is_0() {
 		Account account = new Account(1);
 
 		int balance = account.deposit(0);
