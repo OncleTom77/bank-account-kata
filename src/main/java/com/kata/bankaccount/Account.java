@@ -17,14 +17,14 @@ class Account {
 		return new Account(Amount.of(amount));
 	}
 
-	Amount deposit(int amount) {
-		operations.add(Operation.deposit(Amount.of(amount)));
+	Amount deposit(Amount amount) {
+		operations.add(Operation.deposit(amount));
 		balanceAmount = balanceAmount.add(amount);
 		return balanceAmount;
 	}
 
-	Amount withdraw(int amount) {
-		operations.add(Operation.withdrawal(Amount.of(amount)));
+	Amount withdraw(Amount amount) {
+		operations.add(Operation.withdrawal(amount));
 		balanceAmount = balanceAmount.subtract(amount);
 		return balanceAmount;
 	}

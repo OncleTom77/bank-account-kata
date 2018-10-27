@@ -20,7 +20,7 @@ public class AmountTest {
 	public void should_add_amount(int baseAmount, int amountToAdd, int expectedAmount) {
 		Amount amount = Amount.of(baseAmount);
 
-		Amount result = amount.add(amountToAdd);
+		Amount result = amount.add(Amount.of(amountToAdd));
 
 		assertThat(result).isEqualTo(Amount.of(expectedAmount));
 	}
@@ -34,7 +34,7 @@ public class AmountTest {
 	public void should_subtract_amount(int baseAmount, int amountToSubtract, int expectedAmount) {
 		Amount amount = Amount.of(baseAmount);
 
-		Amount result = amount.subtract(amountToSubtract);
+		Amount result = amount.subtract(Amount.of(amountToSubtract));
 
 		assertThat(result).isEqualTo(Amount.of(expectedAmount));
 	}

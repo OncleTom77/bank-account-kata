@@ -22,7 +22,7 @@ public class AccountTest {
 	public void should_update_account_balance_when_deposit_positive_amount(int balanceAmount, int depositAmount, int expectedAmount) {
 		Account account = Account.of(balanceAmount);
 
-		account.deposit(depositAmount);
+		account.deposit(Amount.of(depositAmount));
 
 		assertThat(account).isEqualTo(Account.of(expectedAmount));
 	}
@@ -36,7 +36,7 @@ public class AccountTest {
 	public void should_update_account_balance_when_withdraw_positive_amount(int balanceAmount, int withdrawalAmount, int expectedAmount) {
 		Account account = Account.of(balanceAmount);
 
-		account.withdraw(withdrawalAmount);
+		account.withdraw(Amount.of(withdrawalAmount));
 
 		assertThat(account).isEqualTo(Account.of(expectedAmount));
 	}
@@ -51,10 +51,10 @@ public class AccountTest {
 	public void should_see_as_much_operations_as_deposit_and_withdrawal_operations(int nbDepositOperations, int nbWithdrawalOperations, int nbExpectedOperations) {
 		Account account = Account.of(10);
 		for (int i = 0; i < nbDepositOperations; i++) {
-			account.deposit(1);
+			account.deposit(Amount.of(1));
 		}
 		for (int i = 0; i < nbWithdrawalOperations; i++) {
-			account.withdraw(1);
+			account.withdraw(Amount.of(1));
 		}
 
 		List<Operation> operations = account.getOperationsHistory();
@@ -65,7 +65,7 @@ public class AccountTest {
 	@Test
 	public void should_see_1_deposit_operation_with_amount_in_history_when_1_deposit_operation_is_done() {
 		Account account = Account.of(0);
-		account.deposit(1);
+		account.deposit(Amount.of(1));
 
 		List<Operation> operations = account.getOperationsHistory();
 
@@ -76,7 +76,7 @@ public class AccountTest {
 	@Test
 	public void should_see_1_deposit_operation_with_amount_in_history_when_1_deposit_operation_is_done_2() {
 		Account account = Account.of(0);
-		account.deposit(2);
+		account.deposit(Amount.of(2));
 
 		List<Operation> operations = account.getOperationsHistory();
 
@@ -87,7 +87,7 @@ public class AccountTest {
 	@Test
 	public void should_see_1_withdrawal_operation_with_amount_in_history_when_1_withdrawal_operation_is_done() {
 		Account account = Account.of(0);
-		account.withdraw(1);
+		account.withdraw(Amount.of(1));
 
 		List<Operation> operations = account.getOperationsHistory();
 
@@ -98,7 +98,7 @@ public class AccountTest {
 	@Test
 	public void should_see_1_withdrawal_operation_with_amount_in_history_when_1_withdrawal_operation_is_done_2() {
 		Account account = Account.of(0);
-		account.withdraw(2);
+		account.withdraw(Amount.of(2));
 
 		List<Operation> operations = account.getOperationsHistory();
 

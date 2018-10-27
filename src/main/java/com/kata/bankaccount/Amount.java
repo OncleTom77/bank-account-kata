@@ -13,12 +13,12 @@ class Amount {
 		return new Amount(amount);
 	}
 
-	Amount add(int amount) {
-		return Amount.of(value + amount);
+	Amount add(Amount amount) {
+		return Amount.of(value + amount.value);
 	}
 
-	Amount subtract(int amount) {
-		return Amount.of(value - amount);
+	Amount subtract(Amount amount) {
+		return Amount.of(value - amount.value);
 	}
 
 	@Override
