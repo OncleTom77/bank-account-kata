@@ -6,10 +6,6 @@ class Operation {
 
 	private final OperationType type;
 
-	Operation() {
-		type = null;
-	}
-
 	private Operation(OperationType type) {
 		this.type = type;
 	}
@@ -18,7 +14,7 @@ class Operation {
 		return new Operation(OperationType.DEPOSIT);
 	}
 
-	public static Operation withdrawal() {
+	static Operation withdrawal() {
 		return new Operation(OperationType.WITHDRAWAL);
 	}
 
