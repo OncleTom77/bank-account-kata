@@ -62,4 +62,15 @@ public class AccountTest {
 
 		assertThat(operations).hasSize(nbExpectedOperations);
 	}
+
+	@Test
+	public void should_see_1_deposit_operation_in_history_when_1_deposit_operation_is_done() {
+		Account account = Account.of(0);
+		account.deposit(1);
+
+		List<Operation> operations = account.getOperationsHistory();
+
+		assertThat(operations).hasSize(1);
+		assertThat(operations.get(0)).isEqualTo(Operation.deposit());
+	}
 }
