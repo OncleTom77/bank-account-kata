@@ -63,17 +63,6 @@ public class AccountTest {
 	}
 
 	@Test
-	public void should_see_1_deposit_operation_in_history_when_1_deposit_operation_is_done() {
-		Account account = Account.of(0);
-		account.deposit(1);
-
-		List<Operation> operations = account.getOperationsHistory();
-
-		assertThat(operations).hasSize(1);
-		assertThat(operations.get(0)).isEqualTo(Operation.deposit());
-	}
-
-	@Test
 	public void should_see_1_withdrawal_operation_in_history_when_1_withdrawal_operation_is_done() {
 		Account account = Account.of(0);
 		account.withdraw(1);
@@ -82,5 +71,16 @@ public class AccountTest {
 
 		assertThat(operations).hasSize(1);
 		assertThat(operations.get(0)).isEqualTo(Operation.withdrawal());
+	}
+
+	@Test
+	public void should_see_1_deposit_operation_with_amount_in_history_when_1_deposit_operation_is_done() {
+		Account account = Account.of(0);
+		account.deposit(1);
+
+		List<Operation> operations = account.getOperationsHistory();
+
+		assertThat(operations).hasSize(1);
+		assertThat(operations.get(0)).isEqualTo(Operation.deposit(1));
 	}
 }

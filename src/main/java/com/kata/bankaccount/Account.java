@@ -18,7 +18,7 @@ class Account {
 	}
 
 	Amount deposit(int amount) {
-		operations.add(Operation.deposit());
+		operations.add(Operation.deposit(1));
 		balanceAmount = balanceAmount.add(amount);
 		return balanceAmount;
 	}
