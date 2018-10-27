@@ -6,9 +6,11 @@ import java.util.Objects;
 
 class Account {
 	private Amount balanceAmount;
+	private Operation operation;
 
 	private Account(Amount amount) {
 		this.balanceAmount = amount;
+		operation = null;
 	}
 
 	static Account of(int amount) {
@@ -16,6 +18,7 @@ class Account {
 	}
 
 	Amount deposit(int amount) {
+		operation = new Operation();
 		balanceAmount = balanceAmount.add(amount);
 		return balanceAmount;
 	}
@@ -26,6 +29,9 @@ class Account {
 	}
 
 	List<Operation> getOperationsHistory() {
+		if (operation != null) {
+			return Collections.singletonList(operation);
+		}
 		return Collections.emptyList();
 	}
 

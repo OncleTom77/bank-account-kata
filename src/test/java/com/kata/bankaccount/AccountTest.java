@@ -49,4 +49,14 @@ public class AccountTest {
 
 		assertThat(operations).isEmpty();
 	}
+
+	@Test
+	public void should_see_1_operation_in_history() {
+		Account account = Account.of(0);
+		account.deposit(1);
+
+		List<Operation> operations = account.getOperationsHistory();
+
+		assertThat(operations).hasSize(1);
+	}
 }
