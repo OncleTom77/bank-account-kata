@@ -9,11 +9,11 @@ import static java.util.Arrays.asList;
 
 class Account {
 	private Amount balanceAmount;
-	private Operation operation;
+	private List<Operation> operations;
 
 	private Account(Amount amount) {
 		this.balanceAmount = amount;
-		operation = null;
+		operations = new ArrayList<>();
 	}
 
 	static Account of(int amount) {
@@ -21,7 +21,7 @@ class Account {
 	}
 
 	Amount deposit(int amount) {
-		operation = new Operation();
+		operations.add(new Operation());
 		balanceAmount = balanceAmount.add(amount);
 		return balanceAmount;
 	}
@@ -32,13 +32,7 @@ class Account {
 	}
 
 	List<Operation> getOperationsHistory() {
-		if (operation != null && balanceAmount.equals(Amount.of(2))) {
-			return asList(operation, operation);
-		}
-		if (operation != null) {
-			return Collections.singletonList(operation);
-		}
-		return Collections.emptyList();
+		return operations;
 	}
 
 	@Override
