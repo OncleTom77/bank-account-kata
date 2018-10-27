@@ -7,6 +7,9 @@ class Amount {
 	private final BigDecimal value;
 
 	private Amount(BigDecimal balanceAmount) {
+		if (balanceAmount.compareTo(BigDecimal.ZERO) < 0) {
+			throw new IllegalArgumentException("Amount must not be negative");
+		}
 		value = balanceAmount;
 	}
 

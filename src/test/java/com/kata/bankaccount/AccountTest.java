@@ -116,7 +116,7 @@ public class AccountTest {
 		assertThat(operations.get(0)).isEqualTo(Operation.deposit(depositAmount, balanceAmount, operationDate));
 	}
 
-	@Parameters({"0", "1", "2", "3", "5", "8", "15"})
+	@Parameters({"0", "1", "2", "3", "5", "8", "10"})
 	@Test
 	public void should_see_1_withdrawal_operation_with_different_amounts_in_history_when_1_withdrawal_operation_is_done(int amount) {
 		Account account = Account.of(dateProviderTest, 10);

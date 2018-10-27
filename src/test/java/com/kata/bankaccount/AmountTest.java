@@ -38,4 +38,9 @@ public class AmountTest {
 
 		assertThat(result).isEqualTo(Amount.of(expectedAmount));
 	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void should_throw_IllegalArgumentException_when_trying_to_instantiate_negative_amount() {
+		Amount.of(-1);
+	}
 }
