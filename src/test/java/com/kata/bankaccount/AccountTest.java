@@ -47,4 +47,13 @@ public class AccountTest {
 
 		assertThat(balance).isEqualTo(3);
 	}
+
+	@Test
+	public void should_withdraw_positive_amount_3() {
+		Account account = new Account(5);
+
+		int balance = account.withdraw(3);
+
+		assertThat(balance).isEqualTo(2);
+	}
 }
