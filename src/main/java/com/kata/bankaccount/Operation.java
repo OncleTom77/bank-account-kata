@@ -12,16 +12,12 @@ class Operation {
 		this.amount = amount;
 	}
 
-	static Operation withdrawal() {
-		return new Operation(OperationType.WITHDRAWAL, Amount.of(0));
-	}
-
 	static Operation deposit(Amount amount) {
 		return new Operation(OperationType.DEPOSIT, amount);
 	}
 
-	static Operation withdrawal(int amount) {
-		return new Operation(OperationType.WITHDRAWAL, Amount.of(amount));
+	static Operation withdrawal(Amount amount) {
+		return new Operation(OperationType.WITHDRAWAL, amount);
 	}
 
 	@Override

@@ -92,7 +92,7 @@ public class AccountTest {
 		List<Operation> operations = account.getOperationsHistory();
 
 		assertThat(operations).hasSize(1);
-		assertThat(operations.get(0)).isEqualTo(Operation.withdrawal(1));
+		assertThat(operations.get(0)).isEqualTo(Operation.withdrawal(Amount.of(1)));
 	}
 
 	@Test
@@ -103,6 +103,6 @@ public class AccountTest {
 		List<Operation> operations = account.getOperationsHistory();
 
 		assertThat(operations).hasSize(1);
-		assertThat(operations.get(0)).isEqualTo(Operation.withdrawal(2));
+		assertThat(operations.get(0)).isEqualTo(Operation.withdrawal(Amount.of(2)));
 	}
 }
