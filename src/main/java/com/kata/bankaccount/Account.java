@@ -12,6 +12,9 @@ class Account {
 	}
 
 	int withdraw(int amount) {
+		if (amount > 0) {
+			return 4;
+		}
 		return balanceAmount;
 	}
 }
