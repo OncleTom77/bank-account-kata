@@ -38,4 +38,13 @@ public class AccountTest {
 
 		assertThat(balance).isEqualTo(2);
 	}
+
+	@Test
+	public void should_add_deposit_amount_to_balance_amount_when_amounts_are_positives_1() {
+		Account account = new Account(1);
+
+		int balance = account.deposit(2);
+
+		assertThat(balance).isEqualTo(3);
+	}
 }
