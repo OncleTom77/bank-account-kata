@@ -3,11 +3,7 @@ package com.kata.bankaccount;
 class Account {
 	private int balanceAmount;
 
-	public Account() {
-	}
-
 	public Account(int balanceAmount) {
-
 		this.balanceAmount = balanceAmount;
 	}
 

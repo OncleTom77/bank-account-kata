@@ -8,21 +8,27 @@ public class AccountTest {
 
 	@Test
 	public void should_add_0_amount_to_balance() {
-		int balance = new Account().deposit(0);
+		Account account = new Account(0);
+
+		int balance = account.deposit(0);
 
 		assertThat(balance).isEqualTo(0);
 	}
 
 	@Test
 	public void should_add_1_amount_to_balance() {
-		int balance = new Account().deposit(1);
+		Account account = new Account(0);
+
+		int balance = account.deposit(1);
 
 		assertThat(balance).isEqualTo(1);
 	}
 
 	@Test
 	public void should_add_2_amount_to_balance() {
-		int balance = new Account().deposit(2);
+		Account account = new Account(0);
+
+		int balance = account.deposit(2);
 
 		assertThat(balance).isEqualTo(2);
 	}
