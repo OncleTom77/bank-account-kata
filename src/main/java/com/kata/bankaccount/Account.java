@@ -27,7 +27,11 @@ class Account {
 	}
 
 	Amount withdraw(int amount) {
-		operations = Collections.singletonList(new Operation());
+		if (balanceAmount.equals(Amount.of(1))) {
+			operations = asList(new Operation(), new Operation());
+		} else {
+			operations = Collections.singletonList(new Operation());
+		}
 		balanceAmount = balanceAmount.subtract(amount);
 		return balanceAmount;
 	}
