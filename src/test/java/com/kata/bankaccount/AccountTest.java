@@ -73,22 +73,38 @@ public class AccountTest {
 		assertThat(operations).hasSize(nbExpectedOperations);
 	}
 
+	@Parameters({"0", "1", "2", "3", "5", "8", "15"})
 	@Test
-	public void should_see_1_deposit_operation_with_amount_and_balance_and_date_in_history_when_1_deposit_operation_is_done() {
+	public void should_see_1_deposit_operation_with_different_amounts_in_history_when_1_deposit_operation_is_done(int amount) {
 		Account account = Account.of(dateProviderTest, 0);
-		Amount depositAmount = Amount.of(1);
+		Amount depositAmount = Amount.of(amount);
 		account.deposit(depositAmount);
 
 		List<Operation> operations = account.getOperationsHistory();
 
-		Amount balanceAmount = Amount.of(1);
+		Amount balanceAmount = Amount.of(amount);
 		assertThat(operations).hasSize(1);
 		assertThat(operations.get(0)).isEqualTo(Operation.deposit(depositAmount, balanceAmount, OPERATION_DATE));
 	}
 
+	@Parameters({"0", "1", "2", "4", "7", "10", "13"})
 	@Test
-	public void should_see_1_deposit_operation_with_amount_and_balance_and_date_in_history_when_1_deposit_operation_is_done_2() {
-		LocalDateTime operationDate = OPERATION_DATE.plusDays(1);
+	public void should_see_1_deposit_operation_with_different_balances_in_history_when_1_deposit_operation_is_done(int amount) {
+		Account account = Account.of(dateProviderTest, amount);
+		Amount depositAmount = Amount.of(0);
+		account.deposit(depositAmount);
+
+		List<Operation> operations = account.getOperationsHistory();
+
+		Amount balanceAmount = Amount.of(amount);
+		assertThat(operations).hasSize(1);
+		assertThat(operations.get(0)).isEqualTo(Operation.deposit(depositAmount, balanceAmount, OPERATION_DATE));
+	}
+
+	@Parameters({"2018-10-27T18:00", "2018-10-30T22:30", "2018-11-20T11:00"})
+	@Test
+	public void should_see_1_deposit_operation_with_date_in_history_when_1_deposit_operation_is_done(String date) {
+		LocalDateTime operationDate = LocalDateTime.parse(date);
 		Account account = Account.of(new DateProviderTest(operationDate), 0);
 		Amount depositAmount = Amount.of(1);
 		account.deposit(depositAmount);
