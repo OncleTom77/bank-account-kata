@@ -10,4 +10,8 @@ class Account {
 	int deposit(int amount) {
 		return balanceAmount + amount;
 	}
+
+	int withdraw(int amount) {
+		return 0;
+	}
 }

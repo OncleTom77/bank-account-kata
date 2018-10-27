@@ -19,4 +19,13 @@ public class AccountTest {
 
 		assertThat(balance).isEqualTo(balanceAmount + depositAmount);
 	}
+
+	@Test
+	public void should_withdraw_amount() {
+		Account account = new Account(0);
+
+		int balance = account.withdraw(0);
+
+		assertThat(balance).isEqualTo(0);
+	}
 }
