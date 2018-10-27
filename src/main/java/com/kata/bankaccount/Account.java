@@ -29,7 +29,7 @@ class Account {
 
 	Amount withdraw(Amount amount) {
 		balanceAmount = balanceAmount.subtract(amount);
-		operations.add(Operation.withdrawal(amount, balanceAmount, null));
+		operations.add(Operation.withdrawal(amount, balanceAmount, LocalDateTime.of(2018, Month.OCTOBER, 27, 17, 0)));
 		return balanceAmount;
 	}
 

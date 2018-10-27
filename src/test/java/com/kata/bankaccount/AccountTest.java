@@ -127,7 +127,7 @@ public class AccountTest {
 
 		Amount balanceAmount = Amount.of(10 - amount);
 		assertThat(operations).hasSize(1);
-		assertThat(operations.get(0)).isEqualTo(Operation.withdrawal(withdrawalAmount, balanceAmount, null));
+		assertThat(operations.get(0)).isEqualTo(Operation.withdrawal(withdrawalAmount, balanceAmount, OPERATION_DATE));
 	}
 
 	@Parameters({"0", "1", "2", "4", "7", "10", "13"})
@@ -141,6 +141,19 @@ public class AccountTest {
 
 		Amount balanceAmount = Amount.of(amount);
 		assertThat(operations).hasSize(1);
-		assertThat(operations.get(0)).isEqualTo(Operation.withdrawal(withdrawalAmount, balanceAmount, null));
+		assertThat(operations.get(0)).isEqualTo(Operation.withdrawal(withdrawalAmount, balanceAmount, OPERATION_DATE));
+	}
+
+	@Test
+	public void should_see_1_withdrawal_operation_with_different_dates_in_history_when_1_withdrawal_operation_is_done() {
+		Account account = Account.of(dateProviderTest, 1);
+		Amount withdrawalAmount = Amount.of(1);
+		account.withdraw(withdrawalAmount);
+
+		List<Operation> operations = account.getOperationsHistory();
+
+		Amount balanceAmount = Amount.of(0);
+		assertThat(operations).hasSize(1);
+		assertThat(operations.get(0)).isEqualTo(Operation.withdrawal(withdrawalAmount, balanceAmount, OPERATION_DATE));
 	}
 }
