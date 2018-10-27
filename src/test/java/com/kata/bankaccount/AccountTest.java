@@ -6,6 +6,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -41,65 +42,24 @@ public class AccountTest {
 		assertThat(account).isEqualTo(Account.of(expectedAmount));
 	}
 
+	@Parameters({
+			"0, 0, 0",
+			"1, 0, 1", "3, 0, 3",
+			"0, 1, 1", "0, 3, 3",
+			"1, 1, 2", "3, 5, 8",
+	})
 	@Test
-	public void should_see_empty_operations_history_when_0_deposit() {
-		Account account = Account.of(0);
+	public void should_see_as_much_operations_as_deposit_and_withdrawal_operations(int nbDepositOperations, int nbWithdrawalOperations, int nbExpectedOperations) {
+		Account account = Account.of(10);
+		for (int i = 0; i < nbDepositOperations; i++) {
+			account.deposit(1);
+		}
+		for (int i = 0; i < nbWithdrawalOperations; i++) {
+			account.withdraw(1);
+		}
 
 		List<Operation> operations = account.getOperationsHistory();
 
-		assertThat(operations).isEmpty();
-	}
-
-	@Test
-	public void should_see_1_operation_in_history_when_1_deposit() {
-		Account account = Account.of(0);
-		account.deposit(1);
-
-		List<Operation> operations = account.getOperationsHistory();
-
-		assertThat(operations).hasSize(1);
-	}
-
-	@Test
-	public void should_see_2_operations_in_history_when_2_deposit() {
-		Account account = Account.of(0);
-		account.deposit(1);
-		account.deposit(1);
-
-		List<Operation> operations = account.getOperationsHistory();
-
-		assertThat(operations).hasSize(2);
-	}
-
-	@Test
-	public void should_see_1_operation_in_history_when_1_withdrawal() {
-		Account account = Account.of(2);
-		account.withdraw(1);
-
-		List<Operation> operations = account.getOperationsHistory();
-
-		assertThat(operations).hasSize(1);
-	}
-
-	@Test
-	public void should_see_2_operations_in_history_when_2_withdrawals() {
-		Account account = Account.of(2);
-		account.withdraw(1);
-		account.withdraw(1);
-
-		List<Operation> operations = account.getOperationsHistory();
-
-		assertThat(operations).hasSize(2);
-	}
-
-	@Test
-	public void should_see_2_operations_in_history_when_1_withdrawal_and_1_deposit() {
-		Account account = Account.of(2);
-		account.withdraw(1);
-		account.deposit(1);
-
-		List<Operation> operations = account.getOperationsHistory();
-
-		assertThat(operations).hasSize(2);
+		assertThat(operations).hasSize(nbExpectedOperations);
 	}
 }
