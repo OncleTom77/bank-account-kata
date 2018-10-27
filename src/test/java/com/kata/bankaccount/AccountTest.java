@@ -62,27 +62,29 @@ public class AccountTest {
 		assertThat(operations).hasSize(nbExpectedOperations);
 	}
 
-	@Parameters({"0", "1", "2", "3", "7", "10"})
 	@Test
-	public void should_see_1_deposit_operation_with_amount_in_history_when_1_deposit_operation_is_done(int depositAmount) {
+	public void should_see_1_deposit_operation_with_amount_in_history_when_1_deposit_operation_is_done() {
 		Account account = Account.of(0);
-		account.deposit(Amount.of(depositAmount));
+		Amount depositAmount = Amount.of(1);
+		account.deposit(depositAmount);
 
 		List<Operation> operations = account.getOperationsHistory();
 
+		Amount balanceAmount = Amount.of(1);
 		assertThat(operations).hasSize(1);
-		assertThat(operations.get(0)).isEqualTo(Operation.deposit(Amount.of(depositAmount)));
+		assertThat(operations.get(0)).isEqualTo(Operation.deposit(depositAmount, balanceAmount));
 	}
 
 	@Parameters({"0", "1", "2", "3", "7", "10"})
 	@Test
-	public void should_see_1_withdrawal_operation_with_amount_in_history_when_1_withdrawal_operation_is_done(int withdrawalAmount) {
+	public void should_see_1_withdrawal_operation_with_amount_in_history_when_1_withdrawal_operation_is_done(int amount) {
 		Account account = Account.of(10);
-		account.withdraw(Amount.of(withdrawalAmount));
+		Amount withdrawalAmount = Amount.of(amount);
+		account.withdraw(withdrawalAmount);
 
 		List<Operation> operations = account.getOperationsHistory();
 
 		assertThat(operations).hasSize(1);
-		assertThat(operations.get(0)).isEqualTo(Operation.withdrawal(Amount.of(withdrawalAmount)));
+		assertThat(operations.get(0)).isEqualTo(Operation.withdrawal(withdrawalAmount));
 	}
 }
