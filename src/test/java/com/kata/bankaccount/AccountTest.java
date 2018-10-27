@@ -28,4 +28,13 @@ public class AccountTest {
 
 		assertThat(balance).isEqualTo(1);
 	}
+
+	@Test
+	public void should_get_balance_amount_when_deposit_amount_is_0_2() {
+		Account account = new Account(2);
+
+		int balance = account.deposit(0);
+
+		assertThat(balance).isEqualTo(2);
+	}
 }

@@ -9,7 +9,7 @@ class Account {
 
 	int deposit(int amount) {
 		if (balanceAmount > 0) {
-			return 1;
+			return balanceAmount;
 		}
 		return amount;
 	}
