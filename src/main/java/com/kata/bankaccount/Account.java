@@ -12,6 +12,6 @@ class Account {
 	}
 
 	int withdraw(int amount) {
-		return 0;
+		return balanceAmount;
 	}
 }
