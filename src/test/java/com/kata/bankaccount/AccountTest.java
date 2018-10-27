@@ -83,4 +83,15 @@ public class AccountTest {
 		assertThat(operations).hasSize(1);
 		assertThat(operations.get(0)).isEqualTo(Operation.deposit(1));
 	}
+
+	@Test
+	public void should_see_1_deposit_operation_with_amount_in_history_when_1_deposit_operation_is_done_2() {
+		Account account = Account.of(0);
+		account.deposit(2);
+
+		List<Operation> operations = account.getOperationsHistory();
+
+		assertThat(operations).hasSize(1);
+		assertThat(operations.get(0)).isEqualTo(Operation.deposit(2));
+	}
 }
