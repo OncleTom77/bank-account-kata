@@ -11,17 +11,18 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class AccountTest {
 
 	@Parameters({
-			"0, 1", "0, 7",
-			"2, 0", "8, 0",
-			"1, 2", "2, 2", "3, 2", "9, 4", "6, 15"
+			"0, 0, 0",
+			"0, 1, 1", "0, 7, 7",
+			"2, 0, 2", "8, 0, 8",
+			"1, 2, 3", "2, 2, 4", "3, 2, 5", "9, 4, 13", "6, 15, 21"
 	})
 	@Test
-	public void should_deposit_amount_to_balance_amount(int balanceAmount, int depositAmount) {
+	public void should_deposit_amount_to_balance_amount(int balanceAmount, int depositAmount, int expectedResult) {
 		Account account = new Account(balanceAmount);
 
 		int balance = account.deposit(depositAmount);
 
-		assertThat(balance).isEqualTo(balanceAmount + depositAmount);
+		assertThat(balance).isEqualTo(expectedResult);
 	}
 
 	@Parameters({
