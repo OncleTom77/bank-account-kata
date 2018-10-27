@@ -30,21 +30,13 @@ public class AccountTest {
 		assertThat(balance).isEqualTo(balanceAmount);
 	}
 
+	@Parameters({"1, 1", "1, 2", "2, 2", "3, 2", "9, 4", "6, 15"})
 	@Test
-	public void should_add_deposit_amount_to_balance_amount_when_amounts_are_positives() {
-		Account account = new Account(1);
+	public void should_add_deposit_amount_to_balance_amount_when_amounts_are_positives(int balanceAmount, int depositAmount) {
+		Account account = new Account(balanceAmount);
 
-		int balance = account.deposit(1);
+		int balance = account.deposit(depositAmount);
 
-		assertThat(balance).isEqualTo(2);
-	}
-
-	@Test
-	public void should_add_deposit_amount_to_balance_amount_when_amounts_are_positives_1() {
-		Account account = new Account(1);
-
-		int balance = account.deposit(2);
-
-		assertThat(balance).isEqualTo(3);
+		assertThat(balance).isEqualTo(balanceAmount + depositAmount);
 	}
 }
