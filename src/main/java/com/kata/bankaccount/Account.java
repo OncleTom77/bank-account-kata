@@ -27,6 +27,7 @@ class Account {
 	}
 
 	Amount withdraw(int amount) {
+		operations = Collections.singletonList(new Operation());
 		balanceAmount = balanceAmount.subtract(amount);
 		return balanceAmount;
 	}

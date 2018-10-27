@@ -42,7 +42,7 @@ public class AccountTest {
 	}
 
 	@Test
-	public void should_see_empty_operations_history() {
+	public void should_see_empty_operations_history_when_0_deposit() {
 		Account account = Account.of(0);
 
 		List<Operation> operations = account.getOperationsHistory();
@@ -51,7 +51,7 @@ public class AccountTest {
 	}
 
 	@Test
-	public void should_see_1_operation_in_history() {
+	public void should_see_1_operation_in_history_when_1_deposit() {
 		Account account = Account.of(0);
 		account.deposit(1);
 
@@ -61,7 +61,7 @@ public class AccountTest {
 	}
 
 	@Test
-	public void should_see_2_operations_in_history() {
+	public void should_see_2_operations_in_history_when_2_deposit() {
 		Account account = Account.of(0);
 		account.deposit(1);
 		account.deposit(1);
@@ -69,5 +69,15 @@ public class AccountTest {
 		List<Operation> operations = account.getOperationsHistory();
 
 		assertThat(operations).hasSize(2);
+	}
+
+	@Test
+	public void should_see_1_operation_in_history_when_1_withdrawal() {
+		Account account = Account.of(2);
+		account.withdraw(1);
+
+		List<Operation> operations = account.getOperationsHistory();
+
+		assertThat(operations).hasSize(1);
 	}
 }
