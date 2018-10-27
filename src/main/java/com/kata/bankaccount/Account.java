@@ -18,8 +18,8 @@ class Account {
 	}
 
 	Amount deposit(Amount amount) {
-		operations.add(Operation.deposit(amount, amount));
 		balanceAmount = balanceAmount.add(amount);
+		operations.add(Operation.deposit(amount, balanceAmount));
 		return balanceAmount;
 	}
 

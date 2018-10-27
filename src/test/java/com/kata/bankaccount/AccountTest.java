@@ -63,7 +63,7 @@ public class AccountTest {
 	}
 
 	@Test
-	public void should_see_1_deposit_operation_with_amount_in_history_when_1_deposit_operation_is_done() {
+	public void should_see_1_deposit_operation_with_amount_and_balance_in_history_when_1_deposit_operation_is_done() {
 		Account account = Account.of(0);
 		Amount depositAmount = Amount.of(1);
 		account.deposit(depositAmount);
@@ -71,6 +71,19 @@ public class AccountTest {
 		List<Operation> operations = account.getOperationsHistory();
 
 		Amount balanceAmount = Amount.of(1);
+		assertThat(operations).hasSize(1);
+		assertThat(operations.get(0)).isEqualTo(Operation.deposit(depositAmount, balanceAmount));
+	}
+
+	@Test
+	public void should_see_1_deposit_operation_with_amount_and_balance_in_history_when_1_deposit_operation_is_done_2() {
+		Account account = Account.of(1);
+		Amount depositAmount = Amount.of(1);
+		account.deposit(depositAmount);
+
+		List<Operation> operations = account.getOperationsHistory();
+
+		Amount balanceAmount = Amount.of(2);
 		assertThat(operations).hasSize(1);
 		assertThat(operations.get(0)).isEqualTo(Operation.deposit(depositAmount, balanceAmount));
 	}
