@@ -22,9 +22,9 @@ public class AccountTest {
 	public void should_deposit_amount_to_balance_amount(int balanceAmount, int depositAmount, int expectedResult) {
 		Account account = Account.of(balanceAmount);
 
-		int balance = account.deposit(depositAmount);
+		Amount balance = account.deposit(depositAmount);
 
-		assertThat(balance).isEqualTo(expectedResult);
+		assertThat(balance).isEqualTo(Amount.of(expectedResult));
 	}
 
 	@Parameters({
@@ -36,9 +36,9 @@ public class AccountTest {
 	public void should_withdraw_positive_amount(int balanceAmount, int withdrawalAmount, int expectedResult) {
 		Account account = Account.of(balanceAmount);
 
-		int balance = account.withdraw(withdrawalAmount);
+		Amount balance = account.withdraw(withdrawalAmount);
 
-		assertThat(balance).isEqualTo(expectedResult);
+		assertThat(balance).isEqualTo(Amount.of(expectedResult));
 	}
 
 	@Test

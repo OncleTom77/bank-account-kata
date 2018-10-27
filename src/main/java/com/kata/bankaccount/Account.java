@@ -14,11 +14,11 @@ class Account {
 		return new Account(Amount.of(amount));
 	}
 
-	int deposit(int amount) {
+	Amount deposit(int amount) {
 		return balanceAmount.add(amount);
 	}
 
-	int withdraw(int amount) {
+	Amount withdraw(int amount) {
 		return balanceAmount.subtract(amount);
 	}
 
