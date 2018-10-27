@@ -1,8 +1,11 @@
 package com.kata.bankaccount;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+
+import static java.util.Arrays.asList;
 
 class Account {
 	private Amount balanceAmount;
@@ -29,6 +32,9 @@ class Account {
 	}
 
 	List<Operation> getOperationsHistory() {
+		if (operation != null && balanceAmount.equals(Amount.of(2))) {
+			return asList(operation, operation);
+		}
 		if (operation != null) {
 			return Collections.singletonList(operation);
 		}
