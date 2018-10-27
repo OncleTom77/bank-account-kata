@@ -1,24 +1,29 @@
 package com.kata.bankaccount;
 
+import java.math.BigDecimal;
 import java.util.Objects;
 
 class Amount {
-	private final int value;
+	private final BigDecimal value;
 
-	private Amount(int balanceAmount) {
+	private Amount(BigDecimal balanceAmount) {
 		value = balanceAmount;
 	}
 
-	static Amount of(int amount) {
+	static Amount of(double amount) {
+		return of(BigDecimal.valueOf(amount));
+	}
+
+	static Amount of(BigDecimal amount) {
 		return new Amount(amount);
 	}
 
 	Amount add(Amount amount) {
-		return Amount.of(value + amount.value);
+		return Amount.of(value.add(amount.value));
 	}
 
 	Amount subtract(Amount amount) {
-		return Amount.of(value - amount.value);
+		return Amount.of(value.subtract(amount.value));
 	}
 
 	@Override
@@ -26,7 +31,7 @@ class Amount {
 		if (this == o) return true;
 		if (!(o instanceof Amount)) return false;
 		Amount amount = (Amount) o;
-		return value == amount.value;
+		return Objects.equals(value, amount.value);
 	}
 
 	@Override
