@@ -6,8 +6,12 @@ import java.util.List;
 class Account {
 	private Amount balanceAmount;
 
-	public Account(Amount amount) {
+	private Account(Amount amount) {
 		this.balanceAmount = amount;
+	}
+
+	static Account of(int amount) {
+		return new Account(Amount.of(amount));
 	}
 
 	int deposit(int amount) {

@@ -3,8 +3,12 @@ package com.kata.bankaccount;
 class Amount {
 	private final int value;
 
-	Amount(int balanceAmount) {
+	private Amount(int balanceAmount) {
 		value = balanceAmount;
+	}
+
+	static Amount of(int amount) {
+		return new Amount(amount);
 	}
 
 	int add(int amount) {

@@ -20,7 +20,7 @@ public class AccountTest {
 	})
 	@Test
 	public void should_deposit_amount_to_balance_amount(int balanceAmount, int depositAmount, int expectedResult) {
-		Account account = new Account(new Amount(balanceAmount));
+		Account account = Account.of(balanceAmount);
 
 		int balance = account.deposit(depositAmount);
 
@@ -34,7 +34,7 @@ public class AccountTest {
 	})
 	@Test
 	public void should_withdraw_positive_amount(int balanceAmount, int withdrawalAmount, int expectedResult) {
-		Account account = new Account(new Amount(balanceAmount));
+		Account account = Account.of(balanceAmount);
 
 		int balance = account.withdraw(withdrawalAmount);
 
@@ -43,7 +43,7 @@ public class AccountTest {
 
 	@Test
 	public void should_see_empty_operations_history() {
-		Account account = new Account(new Amount(0));
+		Account account = Account.of(0);
 
 		List<Operation> operations = account.getOperationsHistory();
 
