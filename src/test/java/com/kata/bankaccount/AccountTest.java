@@ -12,4 +12,12 @@ public class AccountTest {
 
 		assertThat(balance).isEqualTo(0);
 	}
+
+	@Test
+	public void should_add_1_amount_to_balance() {
+		int balance = new Account().deposit(1);
+
+		assertThat(balance).isEqualTo(1);
+	}
+
 }

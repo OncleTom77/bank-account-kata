@@ -1,7 +1,7 @@
 package com.kata.bankaccount;
 
-public class Account {
-	public int deposit(int amount) {
-		return 0;
+class Account {
+	int deposit(int amount) {
+		return amount;
 	}
 }
