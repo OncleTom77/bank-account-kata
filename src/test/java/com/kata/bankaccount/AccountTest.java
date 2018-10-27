@@ -62,47 +62,27 @@ public class AccountTest {
 		assertThat(operations).hasSize(nbExpectedOperations);
 	}
 
+	@Parameters({"0", "1", "2", "3", "7", "10"})
 	@Test
-	public void should_see_1_deposit_operation_with_amount_in_history_when_1_deposit_operation_is_done() {
+	public void should_see_1_deposit_operation_with_amount_in_history_when_1_deposit_operation_is_done(int depositAmount) {
 		Account account = Account.of(0);
-		account.deposit(Amount.of(1));
+		account.deposit(Amount.of(depositAmount));
 
 		List<Operation> operations = account.getOperationsHistory();
 
 		assertThat(operations).hasSize(1);
-		assertThat(operations.get(0)).isEqualTo(Operation.deposit(Amount.of(1)));
+		assertThat(operations.get(0)).isEqualTo(Operation.deposit(Amount.of(depositAmount)));
 	}
 
+	@Parameters({"0", "1", "2", "3", "7", "10"})
 	@Test
-	public void should_see_1_deposit_operation_with_amount_in_history_when_1_deposit_operation_is_done_2() {
-		Account account = Account.of(0);
-		account.deposit(Amount.of(2));
+	public void should_see_1_withdrawal_operation_with_amount_in_history_when_1_withdrawal_operation_is_done(int withdrawalAmount) {
+		Account account = Account.of(10);
+		account.withdraw(Amount.of(withdrawalAmount));
 
 		List<Operation> operations = account.getOperationsHistory();
 
 		assertThat(operations).hasSize(1);
-		assertThat(operations.get(0)).isEqualTo(Operation.deposit(Amount.of(2)));
-	}
-
-	@Test
-	public void should_see_1_withdrawal_operation_with_amount_in_history_when_1_withdrawal_operation_is_done() {
-		Account account = Account.of(0);
-		account.withdraw(Amount.of(1));
-
-		List<Operation> operations = account.getOperationsHistory();
-
-		assertThat(operations).hasSize(1);
-		assertThat(operations.get(0)).isEqualTo(Operation.withdrawal(Amount.of(1)));
-	}
-
-	@Test
-	public void should_see_1_withdrawal_operation_with_amount_in_history_when_1_withdrawal_operation_is_done_2() {
-		Account account = Account.of(0);
-		account.withdraw(Amount.of(2));
-
-		List<Operation> operations = account.getOperationsHistory();
-
-		assertThat(operations).hasSize(1);
-		assertThat(operations.get(0)).isEqualTo(Operation.withdrawal(Amount.of(2)));
+		assertThat(operations.get(0)).isEqualTo(Operation.withdrawal(Amount.of(withdrawalAmount)));
 	}
 }
