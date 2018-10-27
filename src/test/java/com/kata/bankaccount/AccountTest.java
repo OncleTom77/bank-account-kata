@@ -116,30 +116,31 @@ public class AccountTest {
 		assertThat(operations.get(0)).isEqualTo(Operation.deposit(depositAmount, balanceAmount, operationDate));
 	}
 
+	@Parameters({"0", "1", "2", "3", "5", "8", "15"})
 	@Test
-	public void should_see_1_withdrawal_operation_with_amount_and_balance_in_history_when_1_withdrawal_operation_is_done() {
+	public void should_see_1_withdrawal_operation_with_different_amounts_in_history_when_1_withdrawal_operation_is_done(int amount) {
 		Account account = Account.of(dateProviderTest, 10);
-		Amount withdrawalAmount = Amount.of(1);
+		Amount withdrawalAmount = Amount.of(amount);
 		account.withdraw(withdrawalAmount);
 
 		List<Operation> operations = account.getOperationsHistory();
 
-		Amount balanceAmount = Amount.of(9);
+		Amount balanceAmount = Amount.of(10 - amount);
 		assertThat(operations).hasSize(1);
-		assertThat(operations.get(0)).isEqualTo(Operation.withdrawal(withdrawalAmount, balanceAmount));
+		assertThat(operations.get(0)).isEqualTo(Operation.withdrawal(withdrawalAmount, balanceAmount, null));
 	}
 
+	@Parameters({"0", "1", "2", "4", "7", "10", "13"})
 	@Test
-	public void should_see_1_withdrawal_operation_with_amount_and_balance_in_history_when_1_withdrawal_operation_is_done_2() {
-		Account account = Account.of(dateProviderTest, 10);
-		Amount withdrawalAmount = Amount.of(2);
+	public void should_see_1_withdrawal_operation_with_different_balances_in_history_when_1_withdrawal_operation_is_done(int amount) {
+		Account account = Account.of(dateProviderTest, amount);
+		Amount withdrawalAmount = Amount.of(0);
 		account.withdraw(withdrawalAmount);
 
 		List<Operation> operations = account.getOperationsHistory();
 
-		Amount balanceAmount = Amount.of(8);
+		Amount balanceAmount = Amount.of(amount);
 		assertThat(operations).hasSize(1);
-		assertThat(operations.get(0)).isEqualTo(Operation.withdrawal(withdrawalAmount, balanceAmount));
+		assertThat(operations.get(0)).isEqualTo(Operation.withdrawal(withdrawalAmount, balanceAmount, null));
 	}
-
 }
