@@ -20,6 +20,10 @@ class Operation {
 		return new Operation(OperationType.DEPOSIT, amount);
 	}
 
+	static Operation withdrawal(int amount) {
+		return new Operation(OperationType.WITHDRAWAL, Amount.of(amount));
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
