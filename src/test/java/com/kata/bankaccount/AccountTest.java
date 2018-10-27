@@ -20,4 +20,11 @@ public class AccountTest {
 		assertThat(balance).isEqualTo(1);
 	}
 
+	@Test
+	public void should_add_2_amount_to_balance() {
+		int balance = new Account().deposit(2);
+
+		assertThat(balance).isEqualTo(2);
+	}
+
 }
