@@ -18,8 +18,8 @@ class Operation {
 		return new Operation(OperationType.DEPOSIT, amount, balanceAmount);
 	}
 
-	static Operation withdrawal(Amount amount) {
-		return new Operation(OperationType.WITHDRAWAL, amount, null);
+	static Operation withdrawal(Amount amount, Amount balanceAmount) {
+		return new Operation(OperationType.WITHDRAWAL, amount, balanceAmount);
 	}
 
 	@Override
