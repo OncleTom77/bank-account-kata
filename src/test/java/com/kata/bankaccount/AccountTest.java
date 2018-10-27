@@ -91,4 +91,15 @@ public class AccountTest {
 
 		assertThat(operations).hasSize(2);
 	}
+
+	@Test
+	public void should_see_2_operations_in_history_when_1_withdrawal_and_1_deposit() {
+		Account account = Account.of(2);
+		account.withdraw(1);
+		account.deposit(1);
+
+		List<Operation> operations = account.getOperationsHistory();
+
+		assertThat(operations).hasSize(2);
+	}
 }
