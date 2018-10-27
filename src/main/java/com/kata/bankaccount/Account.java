@@ -16,8 +16,8 @@ class Account {
 	}
 
 	Amount deposit(int amount) {
-		balanceAmount = Amount.of(amount);
-		return balanceAmount.add(amount);
+		balanceAmount = balanceAmount.add(amount);
+		return balanceAmount;
 	}
 
 	Amount withdraw(int amount) {
