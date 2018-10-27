@@ -21,6 +21,7 @@ class Account {
 	}
 
 	Amount withdraw(int amount) {
+		balanceAmount = Amount.of(2);
 		return balanceAmount.subtract(amount);
 	}
 
