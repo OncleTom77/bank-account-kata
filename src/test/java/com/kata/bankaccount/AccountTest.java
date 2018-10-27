@@ -81,7 +81,7 @@ public class AccountTest {
 		List<Operation> operations = account.getOperationsHistory();
 
 		assertThat(operations).hasSize(1);
-		assertThat(operations.get(0)).isEqualTo(Operation.deposit(1));
+		assertThat(operations.get(0)).isEqualTo(Operation.deposit(Amount.of(1)));
 	}
 
 	@Test
@@ -92,6 +92,6 @@ public class AccountTest {
 		List<Operation> operations = account.getOperationsHistory();
 
 		assertThat(operations).hasSize(1);
-		assertThat(operations.get(0)).isEqualTo(Operation.deposit(2));
+		assertThat(operations.get(0)).isEqualTo(Operation.deposit(Amount.of(2)));
 	}
 }

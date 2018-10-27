@@ -5,18 +5,18 @@ import java.util.Objects;
 class Operation {
 
 	private final OperationType type;
-	private final int amount;
+	private final Amount amount;
 
-	private Operation(OperationType withdrawal, int amount) {
-		type = withdrawal;
+	private Operation(OperationType type, Amount amount) {
+		this.type = type;
 		this.amount = amount;
 	}
 
 	static Operation withdrawal() {
-		return new Operation(OperationType.WITHDRAWAL, 0);
+		return new Operation(OperationType.WITHDRAWAL, Amount.of(0));
 	}
 
-	static Operation deposit(int amount) {
+	static Operation deposit(Amount amount) {
 		return new Operation(OperationType.DEPOSIT, amount);
 	}
 
@@ -25,8 +25,8 @@ class Operation {
 		if (this == o) return true;
 		if (!(o instanceof Operation)) return false;
 		Operation operation = (Operation) o;
-		return amount == operation.amount &&
-				type == operation.type;
+		return type == operation.type &&
+				Objects.equals(amount, operation.amount);
 	}
 
 	@Override
