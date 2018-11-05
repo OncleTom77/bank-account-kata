@@ -7,22 +7,22 @@ class Amount {
 	private final BigDecimal value;
 
 	private Amount(BigDecimal balanceAmount) {
-		if (isNegative(balanceAmount)) {
-			throw new IllegalArgumentException("Amount must not be negative");
-		}
 		value = balanceAmount;
-	}
-
-	private boolean isNegative(BigDecimal balanceAmount) {
-		return balanceAmount.compareTo(BigDecimal.ZERO) < 0;
 	}
 
 	static Amount of(double amount) {
 		return of(BigDecimal.valueOf(amount));
 	}
 
-	static Amount of(BigDecimal amount) {
+	private static Amount of(BigDecimal amount) {
+		if (isNegative(amount)) {
+			throw new IllegalArgumentException("Amount must not be negative");
+		}
 		return new Amount(amount);
+	}
+
+	private static boolean isNegative(BigDecimal balanceAmount) {
+		return balanceAmount.compareTo(BigDecimal.ZERO) < 0;
 	}
 
 	Amount add(Amount amount) {

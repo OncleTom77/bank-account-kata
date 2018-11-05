@@ -10,37 +10,30 @@ import static org.assertj.core.api.Assertions.assertThat;
 @RunWith(JUnitParamsRunner.class)
 public class AmountTest {
 
-	@Parameters({
-			"0, 0, 0",
-			"0, 1, 1", "0, 7, 7",
-			"2, 0, 2", "8, 0, 8",
-			"1, 2, 3", "2, 2, 4", "3, 2, 5", "9, 4, 13", "6, 15, 21"
-	})
 	@Test
-	public void should_add_amount(int baseAmount, int amountToAdd, int expectedAmount) {
-		Amount amount = Amount.of(baseAmount);
+	public void should_add_amount() {
+		int initialAmount = 7;
+		Amount amount = Amount.of(initialAmount);
 
+		int amountToAdd = 4;
 		Amount result = amount.add(Amount.of(amountToAdd));
 
-		assertThat(result).isEqualTo(Amount.of(expectedAmount));
+		assertThat(result).isEqualTo(Amount.of(initialAmount + amountToAdd));
 	}
 
-	@Parameters({
-			"0, 0, 0",
-			"1, 0, 1", "3, 0, 3",
-			"5, 1, 4", "5, 2, 3", "5, 3, 2"
-	})
 	@Test
-	public void should_subtract_amount(int baseAmount, int amountToSubtract, int expectedAmount) {
-		Amount amount = Amount.of(baseAmount);
+	public void should_subtract_amount() {
+		int initialAmount = 5;
+		Amount amount = Amount.of(initialAmount);
 
+		int amountToSubtract = 3;
 		Amount result = amount.subtract(Amount.of(amountToSubtract));
 
-		assertThat(result).isEqualTo(Amount.of(expectedAmount));
+		assertThat(result).isEqualTo(Amount.of(initialAmount - amountToSubtract));
 	}
 
 	@Test(expected = IllegalArgumentException.class)
-	public void should_throw_IllegalArgumentException_when_trying_to_instantiate_negative_amount() {
+	public void should_not_instantiate_negative_amount() {
 		Amount.of(-1);
 	}
 }

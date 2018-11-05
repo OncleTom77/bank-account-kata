@@ -6,29 +6,29 @@ import java.util.Objects;
 
 class Account {
 	private final DateProvider dateProvider;
-	private Amount balanceAmount;
+	private Amount balance;
 	private List<Operation> operations;
 
-	public Account(DateProvider dateProvider, Amount amount) {
+	private Account(DateProvider dateProvider, Amount amount) {
 		this.dateProvider = dateProvider;
-		this.balanceAmount = amount;
+		balance = Amount.of(0);
 		operations = new ArrayList<>();
+
+		deposit(amount);
 	}
 
 	static Account of(DateProvider dateProvider, int amount) {
 		return new Account(dateProvider, Amount.of(amount));
 	}
 
-	Amount deposit(Amount amount) {
-		balanceAmount = balanceAmount.add(amount);
-		operations.add(Operation.deposit(amount, balanceAmount, dateProvider.now()));
-		return balanceAmount;
+	void deposit(Amount amount) {
+		balance = balance.add(amount);
+		operations.add(DepositOperation.of(amount, balance, dateProvider.now()));
 	}
 
-	Amount withdraw(Amount amount) {
-		balanceAmount = balanceAmount.subtract(amount);
-		operations.add(Operation.withdrawal(amount, balanceAmount, dateProvider.now()));
-		return balanceAmount;
+	void withdraw(Amount amount) {
+		balance = balance.subtract(amount);
+		operations.add(WithdrawalOperation.of(amount, balance, dateProvider.now()));
 	}
 
 	List<Operation> getOperationsHistory() {
@@ -40,11 +40,11 @@ class Account {
 		if (this == o) return true;
 		if (!(o instanceof Account)) return false;
 		Account account = (Account) o;
-		return Objects.equals(balanceAmount, account.balanceAmount);
+		return Objects.equals(balance, account.balance);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(balanceAmount);
+		return Objects.hash(balance);
 	}
 }
